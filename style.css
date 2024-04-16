@@ -1,0 +1,30 @@
+/* Estilos personalizados aquí */
+.card {
+  margin-top: 50px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  text-align: center;
+  position: relative;
+}
+
+.card img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  position: relative;
+  top: -75px;
+  border: 4px solid #fff;
+}
+
+.card .background-image {
+  background-size: cover;
+  height: 200px;
+}
+
+.card .employee-info {
+  margin-top: 20px;
+}
+
+.card .company-info {
+  margin-top: 20px;
+}
