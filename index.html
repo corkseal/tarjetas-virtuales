@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CorkSeal | {user}</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuario</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <div id="employee-card" class="card">
-      <!-- Contenido de la tarjeta se insertará aquí con JavaScript -->
-    </div>
-  </div>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="https://kit.fontawesome.com/43ea8a9b5d.js" crossorigin="anonymous"></script>
-  <script src="script.js"></script>
+    <main class="container">
+        <div class="card" id="userCard">
+            <img src="" alt="User image" class="card__image" />
+            <div class="card__text">
+                <h2 id="userName"></h2>
+                <p id="userPosition"></p>
+            </div><br>
+            <div class="card__action">
+                <a id="phoneNumberLink" class="card__action__button card__action--call"><i class="fas fa-phone"></i></a>
+                <a id="emailLink" class="card__action__button card__action--email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,46 +1,32 @@
-$(document).ready(function() {
-  console.log('Documento listo');
+// Obtener el parámetro 'user' de la URL
+const urlParams = new URLSearchParams(window.location.search);
+const username = urlParams.get('user');
 
-  // Obtener parámetro de la URL (?user=nombredeusuario)
-  const urlParams = new URLSearchParams(window.location.search);
-  const username = urlParams.get('user');
-  console.log('Usuario:', username);
+// URL del archivo JSON del usuario
+const userDataUrl = `data/${username}.json`;
 
-  // Obtener datos comunes de la empresa
-  fetch('data/company.json')
-    .then(response => response.json())
-    .then(companyData => {
-      console.log('Datos de la empresa:', companyData);
-      
-      // Obtener datos del usuario desde el archivo JSON
-      fetch(`data/${username}.json`)
-        .then(response => response.json())
-        .then(userData => {
-          console.log('Datos del usuario:', userData);
-          
-          const card = `
-            <div class="background-image" style="background-image: url('${companyData.backgroundImageUrl}')"></div>
-            <center><img src="${userData.profileImageUrl}" alt="Foto de ${userData.name}"></center>
-            <div class="employee-info">
-              <h2>${userData.name}</h2>
-              <p>${userData.position}</p>
-              <div class="btn-group" role="group">
-                <a href="tel:${userData.phoneNumber}" class="btn btn-primary"><i class="fas fa-phone"></i></a>
-                <a href="https://wa.me/${userData.whatsappNumber}" class="btn btn-success"><i class="fab fa-whatsapp"></i></a>
-                <a href="mailto:${userData.email}" class="btn btn-info"><i class="fas fa-envelope"></i></a>
-              </div>
-            </div>
-            <div class="company-info">
-              <p>${companyData.companyName}</p>
-              <p>${companyData.companyPhoneNumber}</p>
-              <p>${companyData.companyEmail}</p>
-            </div>
-          `;
-          console.log('Tarjeta de empleado generada:', card);
-          
-          $('#employee-card').html(card);
-        })
-        .catch(error => console.error('Error al cargar los datos del usuario:', error));
-    })
-    .catch(error => console.error('Error al cargar los datos de la empresa:', error));
-});
+// Función para cargar los datos del usuario desde el archivo JSON
+async function loadUserData() {
+    try {
+        // Obtener los datos del usuario desde el archivo JSON
+        const response = await fetch(userDataUrl);
+        if (!response.ok) {
+            throw new Error('Usuario no encontrado');
+        }
+        const userData = await response.json();
+
+        // Actualizar el contenido del card con los datos del usuario
+        document.getElementById('userName').textContent = userData.name;
+        document.querySelector('.card__text p').textContent = userData.position;
+        document.querySelector('.card__image').setAttribute('src', userData.profileImageUrl);
+        document.getElementById('phoneNumberLink').setAttribute('href', `tel:${userData.phoneNumber}`);
+        document.getElementById('emailLink').setAttribute('href', `mailto:${userData.email}`);
+    } catch (error) {
+        console.error('Error al cargar los datos del usuario:', error);
+        // Mostrar mensaje de usuario no encontrado
+        document.getElementById('userCard').innerHTML = `<p>Usuario no encontrado</p><p><a href="mailto:info@corkandseal.com">info@corkandseal.com</a></p>`;
+    }
+}
+
+// Cargar los datos del usuario al cargar la página
+window.onload = loadUserData;
