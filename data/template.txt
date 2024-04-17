@@ -5,5 +5,4 @@
     "phoneNumber": "666666666",
     "whatsappNumber": "666666666",
     "email": "mail@mail.mail"
-  }
-  
+}

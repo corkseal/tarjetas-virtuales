@@ -3,7 +3,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const username = urlParams.get('user');
 
 // URL del archivo JSON del usuario
-const userDataUrl = `data/${username}.json`;
+const userDataUrl = `./data/${username}.json`;
 
 // Función para cargar los datos del usuario desde el archivo JSON
 async function loadUserData() {
